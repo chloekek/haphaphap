@@ -6,7 +6,14 @@ let
     # This incurs a lot of dependencies that we do not need.
     # Hence we create a small list of allowed exensions.
     phpExtensions = { all, ... }: [
+
+        # The opcache extension enables php bytecode caching.
+        # Using opcache, php-fpm won’t compile the code again for each request.
+        all.opcache
+
+        # The pgsql extension provides a postgresql client library.
         all.pgsql
+
     ];
 
 in
