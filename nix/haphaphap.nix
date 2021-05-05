@@ -14,6 +14,12 @@ let
         # The pgsql extension provides a postgresql client library.
         all.pgsql
 
+        # The following extensions are required by psalm.
+        all.dom
+        all.filter
+        all.simplexml
+        all.tokenizer
+
     ];
 
 in

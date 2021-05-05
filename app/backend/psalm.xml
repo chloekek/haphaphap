@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<!-- Psalm is a type checker for php.
+     This file configures psalm. -->
+
+<!-- errorLevel 1 is the most strict collection of settings. -->
+<psalm errorLevel="1">
+
+    <issueHandlers>
+        <!-- The ForbiddenCode check prohibits use of var_dump.
+             However, var_dump is very handy in debugging,
+             so we disable this check. -->
+        <ForbiddenCode errorLevel="suppress" />
+    </issueHandlers>
+
+</psalm>
