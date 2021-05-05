@@ -1,0 +1,7 @@
+# This file contains the configuration for hivemind.
+# The variables delimited by @@ are substituted
+# at build time by the script in default.nix.
+
+# Specify the nginx prefix path, which is used to store logs, pids, and caches.
+# Also specify the path to the nginx configuration file.
+nginx: @NGINX@/bin/nginx -p var/nginx -c @NGINX@/etc/nginx.conf

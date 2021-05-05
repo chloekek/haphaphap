@@ -1,0 +1,4 @@
+To build haphaphap and run the development environment:
+
+    $ nix-build -A ops.hivemind
+    $ result/bin/hivemind --root . result/etc/Procfile

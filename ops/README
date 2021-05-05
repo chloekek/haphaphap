@@ -1,0 +1,2 @@
+This directory contains configuration for services.
+It also contains nix derivations that generate the configuration files.

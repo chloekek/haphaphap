@@ -1,0 +1,3 @@
+This directory contains state from the development environment.
+This includes the database, log files, and caches.
+The directory structure is version controlled, but the actual files are not.

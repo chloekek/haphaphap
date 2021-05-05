@@ -1,0 +1,5 @@
+This directory contains a pinned version of nixpkgs,
+configured with a custom overlay that provides haphaphap packages.
+The haphaphap packages are exported by haphaphap.nix,
+and again exported by ../default.nix,
+from which they can be conveniently accessed.
