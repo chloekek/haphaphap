@@ -16,6 +16,7 @@ let
         # Then write the configuration file to the output path.
         sed --file=- <<'SED' ${./Procfile} > $out/etc/Procfile
             s:@NGINX@:${toString haphaphap.ops.nginx}:g
+            s:@PHP_FPM@:${toString haphaphap.ops.php-fpm}:g
         SED
 
         # For convenience, export a symbolic link to hivemind.

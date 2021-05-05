@@ -5,3 +5,7 @@
 # Specify the nginx prefix path, which is used to store logs, pids, and caches.
 # Also specify the path to the nginx configuration file.
 nginx: @NGINX@/bin/nginx -p var/nginx -c @NGINX@/etc/nginx.conf
+
+# Specify the php-fpm prefix path, which is used to store logs, pids, and caches.
+# Also specify the path to the php-fpm configuration file.
+php-fpm: @PHP_FPM@/bin/php-fpm -p var/php-fpm -y @PHP_FPM@/etc/php-fpm.conf

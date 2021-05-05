@@ -10,11 +10,12 @@ let
         # Create derivation output directories.
         mkdir --parents $out/{bin,etc}
 
-        # Substitute the port numbers into the configuration file.
+        # Substitute the port numbers and paths into the configuration file.
         # Then write the configuration file to the output path.
         sed --file=- <<'SED' ${./nginx.conf} > $out/etc/nginx.conf
             s:@NGINX_PORT@:${toString haphaphap.ports.nginx}:g
             s:@PHP_FPM_PORT@:${toString haphaphap.ports.php-fpm}:g
+            s:@APP_BACKEND@:${toString haphaphap.app.backend}:g
         SED
 
         # Copy included configuration files to the output as well.
