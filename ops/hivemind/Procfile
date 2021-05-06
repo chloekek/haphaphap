@@ -9,3 +9,7 @@ nginx: @NGINX@/bin/nginx -p var/nginx -c @NGINX@/etc/nginx.conf
 # Specify the php-fpm prefix path, which is used to store logs, pids, and caches.
 # Also specify the path to the php-fpm configuration file.
 php-fpm: @PHP_FPM@/bin/php-fpm -p var/php-fpm -y @PHP_FPM@/etc/php-fpm.conf
+
+# Specify the postgresql data directory.
+# Also specify the path to the postgresql configuration file.
+postgresql: @POSTGRESQL@/bin/postgres -D var/postgresql/data -c config_file=@POSTGRESQL@/etc/postgresql.conf

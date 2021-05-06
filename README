@@ -1,4 +1,16 @@
-To build haphaphap and run the development environment:
+First, run the database setup script:
 
-    $ nix-build -A ops.hivemind
-    $ result/bin/hivemind --root . result/etc/Procfile
+    nix-build -A scripts && result/bin/setup-database.bash
+
+After it has created the database cluster,
+the script will wait until postgresql is running.
+Open a new terminal and run the following command
+to start all the services including postgresql:
+
+    nix-build -A ops.hivemind && result/bin/hivemind --root . result/etc/Procfile
+
+Now the database setup script will finish
+and you can close its terminal.
+
+Now your development environment is up and running.
+You can access haphaphap at http://127.0.0.1:5000.

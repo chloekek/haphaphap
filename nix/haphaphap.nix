@@ -27,14 +27,16 @@ in
 {
     # Configure the port numbers used by the backend services.
     haphaphap.ports = {
-        nginx   = 5000;
-        php-fpm = 5001;
+        nginx      = 5000;
+        php-fpm    = 5001;
+        postgresql = 5002;
     };
 
     # For some packages we want very specific versions.
     # We shall specify those here.
     haphaphap.versions = {
         php = super.php80.withExtensions phpExtensions;
+        postgresql = super.postgresql_13;
     };
 
     # Export haphaphap packages from other directories.
@@ -42,4 +44,6 @@ in
     haphaphap.ops.hivemind = self.callPackage ../ops/hivemind { };
     haphaphap.ops.nginx = self.callPackage ../ops/nginx { };
     haphaphap.ops.php-fpm = self.callPackage ../ops/php-fpm { };
+    haphaphap.ops.postgresql = self.callPackage ../ops/postgresql { };
+    haphaphap.scripts = self.callPackage ../scripts { };
 }

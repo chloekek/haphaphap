@@ -17,6 +17,7 @@ let
         sed --file=- <<'SED' ${./Procfile} > $out/etc/Procfile
             s:@NGINX@:${toString haphaphap.ops.nginx}:g
             s:@PHP_FPM@:${toString haphaphap.ops.php-fpm}:g
+            s:@POSTGRESQL@:${toString haphaphap.ops.postgresql}:g
         SED
 
         # For convenience, export a symbolic link to hivemind.
