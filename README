@@ -14,3 +14,8 @@ and you can close its terminal.
 
 Now your development environment is up and running.
 You can access haphaphap at http://127.0.0.1:5000.
+
+While the development environment is running,
+you can run the tests with the following command:
+
+    nix-build -A tests && result/bin/prove

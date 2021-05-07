@@ -46,4 +46,5 @@ in
     haphaphap.ops.php-fpm = self.callPackage ../ops/php-fpm { };
     haphaphap.ops.postgresql = self.callPackage ../ops/postgresql { };
     haphaphap.scripts = self.callPackage ../scripts { };
+    haphaphap.tests = self.callPackage ../tests { };
 }
