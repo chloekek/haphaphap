@@ -1,3 +1,5 @@
+HOW TO RUN DEVELOPMENT ENVIRONMENT
+
 First, run the database setup script:
 
     nix-build -A scripts && result/bin/setup-database.bash
@@ -19,3 +21,9 @@ While the development environment is running,
 you can run the tests with the following command:
 
     nix-build -A tests && result/bin/prove
+
+HOW TO ADD NODE DEPENDENCIES
+
+To add node dependencies that are not yet in nixpkgs,
+simply follow the instructions in nix/extra-node-packages/README.
+After this, you can use them in your derivations.

@@ -41,6 +41,7 @@ in
 
     # Export haphaphap packages from other directories.
     haphaphap.app.backend = self.callPackage ../app/backend { };
+    haphaphap.app.web = self.callPackage ../app/web { };
     haphaphap.ops.hivemind = self.callPackage ../ops/hivemind { };
     haphaphap.ops.nginx = self.callPackage ../ops/nginx { };
     haphaphap.ops.php-fpm = self.callPackage ../ops/php-fpm { };
