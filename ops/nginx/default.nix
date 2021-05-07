@@ -16,10 +16,12 @@ let
             s:@NGINX_PORT@:${toString haphaphap.ports.nginx}:g
             s:@PHP_FPM_PORT@:${toString haphaphap.ports.php-fpm}:g
             s:@APP_BACKEND@:${toString haphaphap.app.backend}:g
+            s:@APP_WEB@:${toString haphaphap.app.web}:g
         SED
 
         # Copy included configuration files to the output as well.
         cp ${./fastcgi.conf} $out/etc/fastcgi.conf
+        cp ${./mime.conf} $out/etc/mime.conf
 
         # For convenience, export a symbolic link to nginx.
         ln --symbolic ${nginx}/bin/nginx $out/bin/nginx

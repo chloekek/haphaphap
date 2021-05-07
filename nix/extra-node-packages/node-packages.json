@@ -1,0 +1,6 @@
+[
+    "@rollup/plugin-node-resolve",
+    "rollup-plugin-css-only",
+    "rollup-plugin-svelte",
+    "svelte"
+]

@@ -1,0 +1,10 @@
+This overlay adds extra node packages to nodePackages.
+
+The file node-packages.json contains the list of packages.
+From this, the other files are automatically generated.
+Please follow the instructions below to add more packages.
+
+!! THE ONLY FILE YOU HAVE TO EDIT IS node-packages.json !!
+!! AFTER EDITING THAT FILE, YOU MUST RUN THE FOLLOWING COMMAND !!
+
+    nix-shell -p nodejs nodePackages.node2nix --run 'bash generate.bash'
