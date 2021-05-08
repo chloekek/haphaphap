@@ -30,7 +30,7 @@ let
         rollup --config ${./rollup.config.js}
 
         # Place the app in the output directory.
-        cp src/index.html $out/www
+        cp src/{index.html,{global,reset}.css} $out/www
         mv app.{css,js} $out/www
     '';
 in
