@@ -1,7 +1,7 @@
 # This derivation packages maintenance scripts.
 # It also checks them using shellcheck.
 
-{ bash, haphaphap, makeWrapper, runCommand, shellcheck }:
+{ bash, dbmate, haphaphap, makeWrapper, runCommand, shellcheck }:
 
 let
     name = "haphaphap-scripts";
@@ -38,6 +38,16 @@ let
                 --add-flags $out/lib/$f
 
         done
+
+        # Convenient wrapper for migration tool,
+        # which is pre-configured correctly.
+        makeWrapper                      \
+            ${dbmate}/bin/dbmate         \
+            $out/bin/dbmate              \
+            --add-flags --migrations-dir \
+            --add-flags scripts/dbschema \
+            --add-flags --url            \
+            --add-flags 'postgres://haphaphap_admin:haphaphap_admin@127.0.0.1:5002/haphaphap?sslmode=disable'
     '';
 in
     runCommand name env cmd
