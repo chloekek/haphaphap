@@ -1,8 +1,20 @@
+<!-- This is the top-level component of the web app.
+     It contains all the other high-level components:
+     location, search, restaurant, booking, etc.
+
+     Which components it displays is dependent upon its state.
+     The state is manipulated by catching events from the subcomponents. -->
+
 <script>
     import Location from "./Location.svelte";
     import Search from "./Search.svelte";
 
     let location = null;
+
+    function onLocation(ev)
+    {
+        location = ev.detail;
+    }
 </script>
 
 <section
@@ -26,7 +38,7 @@
     {/if}
 
     <section class="location">
-        <Location on:location={ev => location = ev.detail} />
+        <Location on:location={onLocation} />
     </section>
 
     {#if location !== null}
