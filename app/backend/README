@@ -1,0 +1,3 @@
+The backend is written in php and statically type checked using psalm.
+In cases where php type hint syntax is insufficient,
+you will see @param and @return annotations instead.
