@@ -11,8 +11,9 @@ final class SearchResult
      * Construct a search result from its parts.
      */
     public function __construct(
-        public string $id,
-        public string $name,
+        public string     $id,
+        public string     $name,
+        public FeatureSet $features,
     )
     {
     }
@@ -20,12 +21,13 @@ final class SearchResult
     /**
      * Format the search result so that it can be used by the api consumer.
      */
-    public function toApi(): string
+    public function toApi(): mixed
     {
-        return \json_encode([
+        return [
             'id' => $this->id,
             'name' => $this->name,
-        ]);
+            'features' => $this->features->toApi(),
+        ];
     }
 
     /**
@@ -42,20 +44,27 @@ final class SearchResult
         // Retrieve the search results using an sql query.
         $resultRows = $database->query([$query, $location->toPostgis()], "
             SELECT
-                id,
-                name
+                r.id,
+                r.name,
+                COALESCE(bit_or(mi.features), 0)
             FROM
-                restaurants
+                restaurants AS r
+                LEFT JOIN menu_items AS mi
+                    ON r.id = mi.restaurant_id
             WHERE
-                name LIKE '%' || $1 || '%'
-                AND ST_DWithin(location, $2, 1000)
+                r.name LIKE '%' || $1 || '%'
+                AND ST_DWithin(r.location, $2, 1000)
+            GROUP BY
+                r.id
         ");
 
         // Convert the returned rows into search result objects.
-        foreach ($resultRows as list ($id, $name)) {
+        foreach ($resultRows as list ($id, $name, $featuresBigint)) {
             assert ($id !== NULL);
             assert ($name !== NULL);
-            yield new SearchResult($id, $name);
+            assert ($featuresBigint !== NULL);
+            $features = FeatureSet::fromBigint((int)$featuresBigint);
+            yield new SearchResult($id, $name, $features);
         }
     }
 }
