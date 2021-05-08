@@ -1,3 +1,9 @@
+<!-- This component presents the location form,
+     and handles the conversion from input to coordinates.
+     It fires one event, ‘location’, whose details is the coordinates.
+     It won’t fire this event until the coordinates are actually known,
+     and it will never transition back into the ‘unknown coordinates’ state. -->
+
 <script>
 
     import { createEventDispatcher } from "svelte";
