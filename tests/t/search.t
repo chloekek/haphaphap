@@ -51,6 +51,7 @@ is_deeply(
         {
             id => '33ea3da1-d435-4e2e-92f2-132243f3f03d',
             name => 'Testaurant 1',
+            features => [qw(VEGAN VEGETARIAN GLUTEN_FREE)],
         },
     ],
 );
@@ -63,6 +64,7 @@ is_deeply(
         {
             id => '33ea3da1-d435-4e2e-92f2-132243f3f03d',
             name => 'Testaurant 1',
+            features => [qw(VEGAN VEGETARIAN GLUTEN_FREE)],
         },
     ],
 );

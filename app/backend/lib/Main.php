@@ -50,7 +50,7 @@ final class Main
         foreach ($results as $i => $result) {
             if ($i !== 0)
                 echo ',';
-            echo $result->toApi();
+            echo \json_encode($result->toApi());
         }
         echo ']';
     }
