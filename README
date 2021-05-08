@@ -14,6 +14,12 @@ to start all the services including postgresql:
 Now the database setup script will finish
 and you can close its terminal.
 
+Now you can run the database schema migrations.
+You have to run these each time you add new migrations.
+Run them with the following command:
+
+    nix-build -A scripts && result/bin/dbmate migrate
+
 Now your development environment is up and running.
 You can access haphaphap at http://127.0.0.1:5000.
 
