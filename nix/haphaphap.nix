@@ -14,12 +14,20 @@ let
         # The pgsql extension provides a postgresql client library.
         all.pgsql
 
-        # The following extensions are required by psalm.
+        # The following extensions are required by composer or psalm.
         all.dom
         all.filter
+        all.mbstring
+        all.openssl
         all.simplexml
         all.tokenizer
 
+    ];
+
+    # We want to use postgis for geographical queries.
+    # This has to be added to postgresql as an extension.
+    postgresqlPackages = p: [
+        p.postgis
     ];
 
 in
@@ -36,7 +44,7 @@ in
     # We shall specify those here.
     haphaphap.versions = {
         php = super.php80.withExtensions phpExtensions;
-        postgresql = super.postgresql_13;
+        postgresql = super.postgresql_13.withPackages postgresqlPackages;
     };
 
     # Export haphaphap packages from other directories.

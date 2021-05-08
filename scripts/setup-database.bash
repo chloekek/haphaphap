@@ -52,12 +52,18 @@ psql <<'SQL'
     CREATE DATABASE haphaphap OWNER haphaphap_admin;
 SQL
 
+export PGDATABASE=haphaphap
+
 # Fix the permissions on the ‘public’ schema.
 # By default, all roles can read and write this schema,
 # but we only want some roles to be able to do that.
-export PGDATABASE=haphaphap
 psql <<'SQL'
     REVOKE ALL PRIVILEGES ON SCHEMA public FROM PUBLIC;
     GRANT CREATE, USAGE ON SCHEMA public TO haphaphap_admin;
     GRANT USAGE ON SCHEMA public TO haphaphap_app;
+SQL
+
+# Create the postgresql extensions we use.
+psql <<'SQL'
+    CREATE EXTENSION postgis;
 SQL

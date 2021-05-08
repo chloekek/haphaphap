@@ -2,7 +2,7 @@
 # The integration tests connect to the running app,
 # send requests to the app, and verify the app’s responses.
 
-{ makeWrapper, perl, runCommand }:
+{ haphaphap, makeWrapper, perl, runCommand }:
 
 let
     perlPackages = p: [ p.LWPUserAgent ];
@@ -24,11 +24,13 @@ let
 
         # Create a wrapper for the prove program,
         # so that it will run all the tests,
-        # and has the lib modules available.
-        makeWrapper                       \
-            ${perlWithPackages}/bin/prove \
-            $out/bin/prove                \
-            --prefix PERL5LIB : $out/lib  \
+        # and has the lib modules available,
+        # as well as the psql program.
+        makeWrapper                                              \
+            ${perlWithPackages}/bin/prove                        \
+            $out/bin/prove                                       \
+            --prefix PATH : ${haphaphap.versions.postgresql}/bin \
+            --prefix PERL5LIB : $out/lib                         \
             --add-flags $out/t
     '';
 in
