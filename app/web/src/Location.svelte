@@ -17,6 +17,9 @@
     // The raw location, as entered by the user.
     let rawLocation = "";
 
+    // Whether we are currently in the process of geocoding.
+    let busyGeocoding = false;
+
     // The error that occurs when geocoding the location,
     // or null if there was no error yet.
     let error = null;
@@ -25,6 +28,10 @@
     // by contacting the geolocation api.
     async function commit()
     {
+        // Block any commits until we are done,
+        // and show to the user that we are busy.
+        busyGeocoding = true;
+
         try {
 
             // See the documentation at [1] for how this api is used.
@@ -52,6 +59,11 @@
             // Display the error to the user.
             error = ex;
 
+        } finally {
+
+            // No longer geocoding now.
+            busyGeocoding = false;
+
         }
     }
 
@@ -76,9 +88,12 @@
 <button
     class="button"
     type="button"
+    disabled={busyGeocoding}
     on:click={commit}
 >
-    {#if location === null}
+    {#if busyGeocoding}
+        Loading …
+    {:else if location === null}
         Let’s go!
     {:else}
         Refresh
@@ -112,6 +127,15 @@
         line-height: calc(1.8rem - 2px);
 
         padding: 0 0.45rem;
+    }
+
+    .info
+    {
+        border: solid 1px blue;
+
+        line-height: calc(1.8rem - 2px);
+
+        margin-top: 1.8rem;
     }
 
     .error
