@@ -129,15 +129,6 @@
         padding: 0 0.45rem;
     }
 
-    .info
-    {
-        border: solid 1px blue;
-
-        line-height: calc(1.8rem - 2px);
-
-        margin-top: 1.8rem;
-    }
-
     .error
     {
         border: solid 1px red;
